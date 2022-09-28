@@ -1,0 +1,11 @@
+facts:
+  api-base-uri: https://demoqa.com
+  heroes:
+    -
+      gherkinname: "Login Logan"
+      username: someuser
+      password: someuser1A@
+    -
+      gherkinname: "MyBooks Maya"
+      username: someotheruser
+      password: someotheruser1A@
