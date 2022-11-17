@@ -17,6 +17,16 @@ public class ApiBasedAuthenticationService implements AuthenticationService {
     @Override
     public AuthenticatedHero authenticate(Hero hero) {
         RestAssured.baseURI = factsService.getApiBaseUri();
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .body(GenerateTokenRequest.builder()
+                        .username(hero.getUsername())
+                        .password(hero.getPassword())
+                        .build())
+                .post("/Account/v1/GenerateToken")
+                .then()
+                .statusCode(HttpStatus.SC_OK);
+
         final var loginRespone = RestAssured.given()
                 .contentType(ContentType.JSON)
                 .body(LoginRequest.builder()
